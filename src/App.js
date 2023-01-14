@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import NewPage from './pages/NewPage';
+import DetailPage from './pages/DetailPage';
+import RegisterPage from './pages/RegisterPage';
+import ProtectedRoute from './routes/ProtectedRoute';
+import UnprotectedRoute from './routes/UnprotectedRoute';
+import Leaderboards from './pages/Leaderboards';
+
+const App = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [pathname]);
+
+    return (
+        <>
+            <Navbar />
+            <main>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/leaderboards" element={<Leaderboards />} />
+                    <Route path="/new" element={<ProtectedRoute><NewPage /></ProtectedRoute>} />
+                    <Route path="/thread/:threadId" element={<DetailPage />} />
+                    <Route path="/login" element={<UnprotectedRoute><LoginPage /></UnprotectedRoute>} />
+                    <Route path="/register" element={<UnprotectedRoute><RegisterPage /></UnprotectedRoute>} />
+                </Routes>
+            </main>
+        </>
+    );
+};
 
 export default App;
