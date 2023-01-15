@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../components/Button';
 import useInput from '../hooks/useInput';
@@ -11,6 +11,7 @@ const LoginPage = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useInput();
     const [password, setPassword] = useInput();
+    const { loading } = useSelector((states) => states);
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -43,6 +44,8 @@ const LoginPage = () => {
                     label="MASUK"
                     size="large"
                     type="submit"
+                    disabled={!email || !password}
+                    isLoading={loading.button}
                     style={{ marginTop: 20, marginBottom: 15 }}
                 />
                 <p className="paragraph-secondary">

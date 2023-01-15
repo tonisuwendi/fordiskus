@@ -14,7 +14,6 @@ import Leaderboards from './pages/Leaderboards';
 import NotFound from './pages/NotFound';
 import LoadingSpinner from './components/LoadingSpinner';
 import { asyncPreloadProccess } from './states/isPreload/action';
-import { asyncReveciveLeaderboards } from './states/leaderboards/action';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -27,7 +26,6 @@ const App = () => {
 
     useEffect(() => {
         dispatch(asyncPreloadProccess());
-        dispatch(asyncReveciveLeaderboards());
     }, [dispatch]);
 
     if (isPreload) return <LoadingSpinner />;

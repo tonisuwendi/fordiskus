@@ -8,17 +8,21 @@ import ProfileSection from '../components/ProfileSection';
 import SearchInfo from '../components/Thread/Condition/SearchInfo';
 import CreateInfo from '../components/Thread/Condition/CreateInfo';
 import EmptySearch from '../components/Thread/Condition/EmptySearch';
+import SkeletonThreads from '../components/Skeleton/Threads';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
+import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
 import { filterCategoryActionCreator } from '../states/filter/action';
 
 const HomePage = () => {
     const dispatch = useDispatch();
     const {
-        authUser, users, threads, filter: { category, searchKeyword },
+        authUser, users, threads, loading, filter: { category, searchKeyword },
     } = useSelector((states) => states);
 
     useEffect(() => {
         dispatch(asyncPopulateUsersAndThreads());
+        dispatch(asyncReceiveLeaderboards());
+
         return () => dispatch(filterCategoryActionCreator(''));
     }, [dispatch]);
 
@@ -44,7 +48,7 @@ const HomePage = () => {
             </div>
             <div className="home-content">
                 {topHomeContent}
-                <ThreadsList threads={threadsList} />
+                {loading.threads ? <SkeletonThreads /> : <ThreadsList threads={threadsList} />}
             </div>
             <div className="home-right">
                 {authUser && <ProfileSection />}

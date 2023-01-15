@@ -4,6 +4,7 @@ import authUserReducer from './authUser/reducer';
 import filterReducer from './filter/reducer';
 import isPreloadReducer from './isPreload/redurer';
 import leaderboardsReducer from './leaderboards/reducer';
+import loadingReducer from './loading/reducer';
 import threadDetailReducer from './threadDetail/reducer';
 import threadsReducer from './threads/reducer';
 import usersReducer from './users/reducer';
@@ -17,6 +18,7 @@ const store = configureStore({
         threads: threadsReducer,
         threadDetail: threadDetailReducer,
         filter: filterReducer,
+        loading: loadingReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         immutableCheck: { warnAfter: 51 },

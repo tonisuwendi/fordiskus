@@ -1,6 +1,8 @@
 import { toast } from 'react-toastify';
 
 import fetchApi from '../../utils/fetchApi';
+import { asyncReceiveLeaderboards } from '../leaderboards/action';
+import { buttonLoadingActionCreator, detailThreadLoadingActionCreator } from '../loading/action';
 
 const ActionType = {
     RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
@@ -34,22 +36,30 @@ const voteCommentActionCreator = ({ action, userId, commentId }) => ({
 });
 
 const asyncReceiveThreadDetail = (threadId) => async (dispatch) => {
+    dispatch(detailThreadLoadingActionCreator(true));
     try {
         const threadDetail = await fetchApi.getDetailThread(threadId);
         dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
-        toast.error(error.message);
+        const { message } = error;
+        if (message !== 'thread tidak ditemukan') toast.error(message);
+    } finally {
+        dispatch(detailThreadLoadingActionCreator(false));
     }
 };
 
 const asyncCreateComment = ({ threadId, content, onSuccess }) => async (dispatch) => {
+    dispatch(buttonLoadingActionCreator(true));
     try {
         const comment = await fetchApi.createComment({ threadId, content });
         toast.success('Berhasil memberikan komentar');
         dispatch(createCommentActionCreator(comment));
+        dispatch(asyncReceiveLeaderboards());
         if (onSuccess) onSuccess();
     } catch (error) {
         toast.error(error.message);
+    } finally {
+        dispatch(buttonLoadingActionCreator(false));
     }
 };
 
@@ -65,6 +75,7 @@ const asyncVoteComment = ({
     dispatch(voteCommentActionCreator({ action, userId, commentId }));
     try {
         await fetchApi.voteComment({ threadId, commentId, type: action });
+        dispatch(asyncReceiveLeaderboards());
     } catch (error) {
         toast.error(error.message);
         dispatch(voteCommentActionCreator({ action: current, userId, commentId }));

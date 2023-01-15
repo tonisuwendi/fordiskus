@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 
 import fetchApi from '../../utils/fetchApi';
 import { putAccessToken } from '../../utils';
+import { buttonLoadingActionCreator } from '../loading/action';
 
 const ActionType = {
     SET_AUTH_USER: 'SET_AUTH_USER',
@@ -18,6 +19,7 @@ const unsetAuthUserActionCreator = () => ({
 });
 
 const asyncSetAuthUser = ({ email, password }) => async (dispatch) => {
+    dispatch(buttonLoadingActionCreator(true));
     try {
         const token = await fetchApi.login({ email, password });
         putAccessToken(token);
@@ -25,6 +27,8 @@ const asyncSetAuthUser = ({ email, password }) => async (dispatch) => {
         dispatch(setAuthUserActionCreator(authUser));
     } catch (error) {
         toast.error(error.message);
+    } finally {
+        dispatch(buttonLoadingActionCreator(false));
     }
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
@@ -13,6 +13,7 @@ const NewPage = () => {
     const [title, setTitle] = useInput();
     const [category, setCategory] = useInput();
     const [body, setBody] = useInput();
+    const { loading } = useSelector((states) => states);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -54,6 +55,8 @@ const NewPage = () => {
                     label="BUAT DISKUSI"
                     size="large"
                     type="submit"
+                    disabled={!title || !body}
+                    isLoading={loading.button}
                     style={{ marginTop: 20, marginBottom: 15 }}
                 />
             </form>

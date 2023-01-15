@@ -40,10 +40,8 @@ export const createCategoriesList = (threads = []) => {
     threads.forEach((thread) => {
         const isExist = categoriesList.find((category) => category.code === thread.category);
         if (isExist) {
-            categoriesList.find((categoryItem) => ({
-                ...categoryItem,
-                amount: categoryItem.amount + 1,
-            }));
+            const findIndex = categoriesList.findIndex((category) => category.code === thread.category);
+            categoriesList[findIndex].amount += 1;
         } else {
             categoriesList.push({
                 name: `#${thread.category}`,

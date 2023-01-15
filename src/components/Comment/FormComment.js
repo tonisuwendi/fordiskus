@@ -8,7 +8,7 @@ import { asyncCreateComment } from '../../states/threadDetail/action';
 const FormComment = () => {
     const dispatch = useDispatch();
     const [comment, setComment] = useState('');
-    const { threadDetail } = useSelector((states) => states);
+    const { threadDetail, loading } = useSelector((states) => states);
 
     const handleComment = (event) => {
         event.preventDefault();
@@ -28,7 +28,12 @@ const FormComment = () => {
                     placeholder="Tanggapi diskusi dengan memberikan komentar..."
                     onChange={({ target }) => setComment(target.value)}
                 />
-                <Button type="submit" label="Kirim Komentar" />
+                <Button
+                    type="submit"
+                    label="Kirim Komentar"
+                    disabled={!comment}
+                    isLoading={loading.button}
+                />
             </form>
         </>
     );

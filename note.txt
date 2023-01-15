@@ -1,0 +1,11 @@
+TODO:
+- handle loading (done)
+    - not found detail thread (done)
+    - skeleton categories (done)
+    - skeleton threads (done)
+    - skeleton detail thread (done)
+    - button login (done)
+    - button register (done)
+    - button create discussion (done)
+    - button create comment (done)
+- responsive

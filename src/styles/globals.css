@@ -354,6 +354,17 @@ a {
     transition: .2s;
 }
 
+.category-option.skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.category-option.skeleton:first-of-type {
+    border-color: var(--color-slate-200);
+    border-left: 2px solid var(--color-primary-100);
+}
+
 .category-option:hover {
     border-color: var(--color-slate-200);
 }
@@ -735,7 +746,7 @@ a {
 }
 
 .loading-center-content > img {
-    width: 150px;
+    width: 100px;
 }
 
 .search-info {

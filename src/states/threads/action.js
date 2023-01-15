@@ -1,6 +1,8 @@
 import { toast } from 'react-toastify';
 
 import fetchApi from '../../utils/fetchApi';
+import { asyncReceiveLeaderboards } from '../leaderboards/action';
+import { buttonLoadingActionCreator } from '../loading/action';
 import { voteThreadDetailActionCreator } from '../threadDetail/action';
 
 const ActionType = {
@@ -24,13 +26,16 @@ const voteThreadActionCreator = ({ threadId, action, userId }) => ({
 
 const asyncCreateThread = ({
     title, category, body, navigate,
-}) => async () => {
+}) => async (dispatch) => {
+    dispatch(buttonLoadingActionCreator(true));
     try {
         const talk = await fetchApi.createThread({ title, category, body });
         toast.success('Berhasil membuat diskusi');
         navigate(`/thread/${talk.id}`);
     } catch (error) {
         toast.error(error.message);
+    } finally {
+        dispatch(buttonLoadingActionCreator(false));
     }
 };
 
@@ -47,6 +52,7 @@ const asyncVoteThread = ({
     else dispatch(voteThreadActionCreator({ threadId, action, userId }));
     try {
         await fetchApi.voteThread({ threadId, type: action });
+        dispatch(asyncReceiveLeaderboards());
     } catch (error) {
         toast.error(error.message);
         if (isDetail) dispatch(voteThreadDetailActionCreator({ action: current, userId }));
