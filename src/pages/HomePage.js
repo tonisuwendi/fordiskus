@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CategoriesSection from '../components/CategoriesSection';
 import ThreadsList from '../components/Thread/ThreadsList';
-import Button from '../components/Button';
 import Leaderboard from '../components/Leaderboard';
 import ProfileSection from '../components/ProfileSection';
+import SearchInfo from '../components/Thread/Condition/SearchInfo';
+import CreateInfo from '../components/Thread/Condition/CreateInfo';
+import EmptySearch from '../components/Thread/Condition/EmptySearch';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import { filterCategoryActionCreator } from '../states/filter/action';
 
 const HomePage = () => {
     const dispatch = useDispatch();
     const {
-        authUser, users, threads, filter,
+        authUser, users, threads, filter: { category, searchKeyword },
     } = useSelector((states) => states);
 
     useEffect(() => {
@@ -21,14 +22,20 @@ const HomePage = () => {
         return () => dispatch(filterCategoryActionCreator(''));
     }, [dispatch]);
 
-    const filteredThreads = threads.filter((thread) => (
-        thread.title.toLowerCase().includes(filter.searchKeyword.toLowerCase())
+    const filteredCategories = category ? threads.filter((thread) => thread.category === category) : threads;
+
+    const filteredSearch = filteredCategories.filter((thread) => (
+        thread.title.toLowerCase().includes(searchKeyword.toLowerCase())
     ));
 
-    const threadsList = filteredThreads.map((thread) => ({
+    const threadsList = filteredSearch.map((thread) => ({
         ...thread,
         user: users.find((user) => user.id === thread.ownerId),
     }));
+
+    let topHomeContent = <CreateInfo />;
+    if (searchKeyword && threadsList.length > 0) topHomeContent = <SearchInfo searchKeyword={searchKeyword} />;
+    else if (searchKeyword) topHomeContent = <EmptySearch searchKeyword={searchKeyword} />;
 
     return (
         <div className="home-container">
@@ -36,12 +43,7 @@ const HomePage = () => {
                 <CategoriesSection />
             </div>
             <div className="home-content">
-                <div className="want-create-thread section-content">
-                    <h2 className="want-create-thread__title">Mau diskusi apaan?</h2>
-                    <Link to="/new">
-                        <Button label="Buat Diskusi" />
-                    </Link>
-                </div>
+                {topHomeContent}
                 <ThreadsList threads={threadsList} />
             </div>
             <div className="home-right">

@@ -29,15 +29,17 @@ const ThreadContent = ({
                 </Link>
             )}
             <p className={`thread__content-body ${isDetail ? '' : 'line-clamp-2'}`} dangerouslySetInnerHTML={{ __html: body }} />
-            {isDetail && (
-                <Button
-                    label={`#${category.toLowerCase()}`}
-                    variant="outline"
-                    size="small"
-                    onClick={handleClickCategory}
-                    style={{ marginTop: 10, padding: '0 8px', height: 28 }}
-                />
-            )}
+            <Button
+                label={`#${category.toLowerCase()}`}
+                variant="outline"
+                size="small"
+                onClick={handleClickCategory}
+                style={{
+                    height: isDetail ? 28 : 24,
+                    marginTop: 10,
+                    padding: '0 8px',
+                }}
+            />
         </>
     );
 };
