@@ -8,16 +8,24 @@ import Button from '../components/Button';
 import Leaderboard from '../components/Leaderboard';
 import ProfileSection from '../components/ProfileSection';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
+import { filterCategoryActionCreator } from '../states/filter/action';
 
 const HomePage = () => {
     const dispatch = useDispatch();
-    const { authUser, users, threads } = useSelector((states) => states);
+    const {
+        authUser, users, threads, filter,
+    } = useSelector((states) => states);
 
     useEffect(() => {
         dispatch(asyncPopulateUsersAndThreads());
+        return () => dispatch(filterCategoryActionCreator(''));
     }, [dispatch]);
 
-    const threadsList = threads.map((thread) => ({
+    const filteredThreads = threads.filter((thread) => (
+        thread.title.toLowerCase().includes(filter.searchKeyword.toLowerCase())
+    ));
+
+    const threadsList = filteredThreads.map((thread) => ({
         ...thread,
         user: users.find((user) => user.id === thread.ownerId),
     }));

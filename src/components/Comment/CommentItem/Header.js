@@ -1,13 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const CommentHeader = () => (
+import { dateTimeAgo } from '../../../utils';
+
+const CommentHeader = ({ avatar, name, date }) => (
     <div className="comment__header">
         <div className="comment__header-user">
-            <img className="comment__header-photo" src="https://id-static.z-dn.net/files/d39/41834b86159e993dc59c8f2bcf764fd3.jpg" alt="user" />
-            <p className="comment__header-name">Paijo Subejo</p>
+            <img className="comment__header-photo" src={avatar} alt="user" />
+            <p className="comment__header-name">{name}</p>
         </div>
-        <small className="comment__header-date">2 jam yang lalu</small>
+        <small className="comment__header-date">{dateTimeAgo(new Date(date))}</small>
     </div>
 );
+
+CommentHeader.propTypes = {
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+};
 
 export default CommentHeader;

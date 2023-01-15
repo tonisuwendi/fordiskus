@@ -8,7 +8,7 @@ const ThreadHeader = ({ avatar, name, date }) => (
         <img className="thread__header-photo" src={avatar} alt="user" />
         <div className="thread__header__content">
             <p className="thread__header-name">{name}</p>
-            <small className="thread__header-date">{dateTimeAgo(date)}</small>
+            <small className="thread__header-date">{dateTimeAgo(new Date(date))}</small>
         </div>
     </div>
 );

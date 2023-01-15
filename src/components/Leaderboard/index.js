@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiFillFire } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +11,10 @@ const Leaderboard = () => {
 
     return (
         <div className="section-content leaderboard-section">
-            <h3 className="section-title">Top 3 Terbaik</h3>
+            <h3 className="section-title leaderboard-title">
+                <AiFillFire />
+                Top 3 Terbaik
+            </h3>
             <div className="leaderboard-list">
                 {leaderboards.map((leaderboard, index) => {
                     if (index < 3) {

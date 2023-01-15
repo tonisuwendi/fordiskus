@@ -38,7 +38,7 @@ export const createCategoriesList = (threads = []) => {
         amount: threads.length,
     }];
     threads.forEach((thread) => {
-        const isExist = categoriesList.find((category) => category.name === thread.category);
+        const isExist = categoriesList.find((category) => category.code === thread.category);
         if (isExist) {
             categoriesList.find((categoryItem) => ({
                 ...categoryItem,

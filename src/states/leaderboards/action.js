@@ -22,6 +22,5 @@ const asyncReveciveLeaderboards = () => async (dispatch) => {
 
 export {
     ActionType,
-    receiveLeaderboardsActionCreator,
     asyncReveciveLeaderboards,
 };

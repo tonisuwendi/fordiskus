@@ -1,12 +1,11 @@
 import { toast } from 'react-toastify';
 
 import fetchApi from '../../utils/fetchApi';
+import { voteThreadDetailActionCreator } from '../threadDetail/action';
 
 const ActionType = {
     RECEIVE_THREADS: 'RECEIVE_THREADS',
-    UPVOTE_THREAD: 'UPVOTE_THREAD',
-    DOWNVOTE_THREAD: 'DOWNVOTE_THREAD',
-    NEUTRALVOTE_THREAD: 'NEUTRALVOTE_THREAD',
+    VOTE_THREAD: 'VOTE_THREAD',
 };
 
 const receiveThreadsActionCreator = (threads) => ({
@@ -14,19 +13,13 @@ const receiveThreadsActionCreator = (threads) => ({
     payload: { threads },
 });
 
-const upVoteThreadActionCreator = ({ threadId, userId }) => ({
-    type: ActionType.UPVOTE_THREAD,
-    payload: { threadId, userId },
-});
-
-const downVoteThreadActionCreator = ({ threadId, userId }) => ({
-    type: ActionType.DOWNVOTE_THREAD,
-    payload: { threadId, userId },
-});
-
-const neutralVoteThreadActionCreator = ({ threadId, userId }) => ({
-    type: ActionType.NEUTRALVOTE_THREAD,
-    payload: { threadId, userId },
+const voteThreadActionCreator = ({ threadId, action, userId }) => ({
+    type: ActionType.VOTE_THREAD,
+    payload: {
+        threadId,
+        action,
+        userId,
+    },
 });
 
 const asyncCreateThread = ({
@@ -41,37 +34,23 @@ const asyncCreateThread = ({
     }
 };
 
-const asyncUpVoteThread = (threadId) => async (dispatch, getState) => {
+const asyncVoteThread = ({
+    isDetail, current, action, threadId,
+}) => async (dispatch, getState) => {
     const { authUser } = getState();
-    dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
-    try {
-        await fetchApi.voteThread({ threadId, type: 'up' });
-    } catch (error) {
-        toast.error(error.message);
-        dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }));
+    if (!authUser) {
+        toast.error('Upss, kamu harus login untuk melakukan vote');
+        return;
     }
-};
-
-const asyncDownVoteThread = (threadId) => async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }));
+    const { id: userId } = authUser;
+    if (isDetail) dispatch(voteThreadDetailActionCreator({ action, userId }));
+    else dispatch(voteThreadActionCreator({ threadId, action, userId }));
     try {
-        await fetchApi.voteThread({ threadId, type: 'down' });
+        await fetchApi.voteThread({ threadId, type: action });
     } catch (error) {
         toast.error(error.message);
-        dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }));
-    }
-};
-
-const asyncNeutralVoteThread = ({ threadId, type }) => async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }));
-    try {
-        await fetchApi.voteThread({ threadId, type: 'neutral' });
-    } catch (error) {
-        toast.error(error.message);
-        if (type === 'up') dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
-        else dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }));
+        if (isDetail) dispatch(voteThreadDetailActionCreator({ action: current, userId }));
+        else dispatch(voteThreadActionCreator({ threadId, action: current, userId }));
     }
 };
 
@@ -79,7 +58,5 @@ export {
     ActionType,
     receiveThreadsActionCreator,
     asyncCreateThread,
-    asyncUpVoteThread,
-    asyncDownVoteThread,
-    asyncNeutralVoteThread,
+    asyncVoteThread,
 };

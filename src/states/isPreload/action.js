@@ -23,6 +23,5 @@ const asyncPreloadProccess = () => async (dispatch) => {
 
 export {
     ActionType,
-    setIsPreloadActionCreator,
     asyncPreloadProccess,
 };

@@ -7,8 +7,7 @@ import ThreadItem from './ThreadItem';
 const ThreadsList = ({ threads }) => {
     const { filter: { category } } = useSelector((states) => states);
 
-    const filteredThreads = category
-        ? threads.filter((thread) => thread.category === category) : threads;
+    const filteredThreads = category ? threads.filter((thread) => thread.category === category) : threads;
 
     return (
         <div className="threads">

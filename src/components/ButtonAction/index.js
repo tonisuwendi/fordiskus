@@ -1,31 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Button from './Button';
-import {
-    asyncDownVoteThread, asyncNeutralVoteThread, asyncUpVoteThread,
-} from '../../states/threads/action';
 
 const ButtonAction = ({
-    showComment, threadId, upVotesBy, downVotesBy, commentLength,
+    showComment, id, upVotesBy, downVotesBy, commentLength, onVote,
 }) => {
-    const dispatch = useDispatch();
     const { authUser } = useSelector((states) => states);
 
     const isUpVoted = authUser ? upVotesBy.includes(authUser.id) : false;
     const isDownVoted = authUser ? downVotesBy.includes(authUser.id) : false;
 
-    const handleUpVote = () => {
-        if (isUpVoted) dispatch(asyncNeutralVoteThread({ threadId, type: 'up' }));
-        else dispatch(asyncUpVoteThread(threadId));
-    };
+    let currentVote = 'neutral';
+    if (isUpVoted) currentVote = 'up';
+    else if (isDownVoted) currentVote = 'down';
 
-    const handleDownVote = () => {
-        if (isDownVoted) dispatch(asyncNeutralVoteThread({ threadId, type: 'down' }));
-        else dispatch(asyncDownVoteThread(threadId));
-    };
+    const handleUpVote = () => onVote({ currentVote, action: isUpVoted ? 'neutral' : 'up' });
+
+    const handleDownVote = () => onVote({ currentVote, action: isDownVoted ? 'neutral' : 'down' });
 
     return (
         <div className="thread__action">
@@ -42,7 +36,7 @@ const ButtonAction = ({
                 onClick={handleDownVote}
             />
             {showComment && (
-                <Link to="/thread/aokwokw">
+                <Link to={`/thread/${id}`}>
                     <Button type="comment" amount={commentLength} />
                 </Link>
             )}
@@ -51,11 +45,17 @@ const ButtonAction = ({
 };
 
 ButtonAction.propTypes = {
-    showComment: PropTypes.bool.isRequired,
-    threadId: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    showComment: PropTypes.bool,
     upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
     downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
     commentLength: PropTypes.number.isRequired,
+    onVote: PropTypes.func.isRequired,
+};
+
+ButtonAction.defaultProps = {
+    id: '',
+    showComment: false,
 };
 
 export default ButtonAction;
