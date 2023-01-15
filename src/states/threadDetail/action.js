@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { toast } from 'react-toastify';
 
 import fetchApi from '../../utils/fetchApi';
@@ -36,6 +37,7 @@ const voteCommentActionCreator = ({ action, userId, commentId }) => ({
 });
 
 const asyncReceiveThreadDetail = (threadId) => async (dispatch) => {
+    dispatch(showLoading());
     dispatch(detailThreadLoadingActionCreator(true));
     try {
         const threadDetail = await fetchApi.getDetailThread(threadId);
@@ -44,6 +46,7 @@ const asyncReceiveThreadDetail = (threadId) => async (dispatch) => {
         const { message } = error;
         if (message !== 'thread tidak ditemukan') toast.error(message);
     } finally {
+        dispatch(hideLoading());
         dispatch(detailThreadLoadingActionCreator(false));
     }
 };

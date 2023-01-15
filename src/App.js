@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import LoadingBar from 'react-redux-loading-bar';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,6 +34,7 @@ const App = () => {
     return (
         <>
             <Navbar />
+            <LoadingBar style={{ backgroundColor: '#2563eb', zIndex: 10 }} />
             <main>
                 <Routes>
                     <Route path="/" element={<HomePage />} />

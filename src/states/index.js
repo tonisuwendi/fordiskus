@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { loadingBarReducer } from 'react-redux-loading-bar';
 
 import authUserReducer from './authUser/reducer';
 import filterReducer from './filter/reducer';
@@ -19,10 +20,11 @@ const store = configureStore({
         threadDetail: threadDetailReducer,
         filter: filterReducer,
         loading: loadingReducer,
+        loadingBar: loadingBarReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        immutableCheck: { warnAfter: 51 },
-        serializableCheck: { warnAfter: 51 },
+        immutableCheck: { warnAfter: 55 },
+        serializableCheck: { warnAfter: 55 },
     }),
 });
 

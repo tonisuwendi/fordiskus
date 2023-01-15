@@ -9,6 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import App from './App';
 import store from './states';
 import './styles/globals.css';
+import './styles/responsive.css';
 
 const root = createRoot(document.getElementById('root'));
 root.render(

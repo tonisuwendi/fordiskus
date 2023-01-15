@@ -14,11 +14,7 @@ const CategoriesSection = () => {
         dispatch(filterCategoryActionCreator(category));
     };
 
-    console.log('thrads', threads);
-
     const categoriesList = createCategoriesList(threads);
-
-    console.log('categoriesList', categoriesList);
 
     return (
         <div className="section-content categories-section">

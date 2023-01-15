@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { toast } from 'react-toastify';
 
 import fetchApi from '../../utils/fetchApi';
@@ -13,6 +14,7 @@ const receiveLeaderboardsActionCreator = (leaderboards) => ({
 });
 
 const asyncReceiveLeaderboards = () => async (dispatch) => {
+    dispatch(showLoading());
     dispatch(leaderboardsLoadingActionCreator(true));
     try {
         const leaderboards = await fetchApi.seeLeaderboards();
@@ -20,6 +22,7 @@ const asyncReceiveLeaderboards = () => async (dispatch) => {
     } catch (error) {
         toast.error(error.message);
     } finally {
+        dispatch(hideLoading());
         dispatch(leaderboardsLoadingActionCreator(false));
     }
 };

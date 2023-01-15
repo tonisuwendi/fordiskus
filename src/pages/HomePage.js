@@ -9,12 +9,15 @@ import SearchInfo from '../components/Thread/Condition/SearchInfo';
 import CreateInfo from '../components/Thread/Condition/CreateInfo';
 import EmptySearch from '../components/Thread/Condition/EmptySearch';
 import SkeletonThreads from '../components/Skeleton/Threads';
+import HomeHeader from '../components/Thread/Condition/HomeHeader';
+import useResponsive from '../hooks/useReponsive';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
 import { filterCategoryActionCreator } from '../states/filter/action';
 
 const HomePage = () => {
     const dispatch = useDispatch();
+    const { isMobile } = useResponsive();
     const {
         authUser, users, threads, loading, filter: { category, searchKeyword },
     } = useSelector((states) => states);
@@ -47,7 +50,8 @@ const HomePage = () => {
                 <CategoriesSection />
             </div>
             <div className="home-content">
-                {topHomeContent}
+                <HomeHeader />
+                {!isMobile && topHomeContent}
                 {loading.threads ? <SkeletonThreads /> : <ThreadsList threads={threadsList} />}
             </div>
             <div className="home-right">

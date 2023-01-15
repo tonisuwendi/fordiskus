@@ -390,6 +390,13 @@ a {
     width: 100%;
 }
 
+.home-filter-mobile {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
 .home-right {
     display: flex;
     flex-shrink: 0;

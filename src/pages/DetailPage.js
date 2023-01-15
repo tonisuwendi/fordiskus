@@ -34,7 +34,7 @@ const DetailPage = () => {
                         user={threadDetail.owner}
                     />
                     <WriteComment />
-                    {!!threadDetail.comments.length && (
+                    {threadDetail.comments.length > 0 && (
                         <ListComments comments={threadDetail.comments} />
                     )}
                 </div>
