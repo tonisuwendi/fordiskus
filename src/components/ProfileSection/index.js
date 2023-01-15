@@ -1,11 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const ProfileSection = () => (
-    <div className="section-content profile-section">
-        <img className="profile-photo" src="https://id-static.z-dn.net/files/d39/41834b86159e993dc59c8f2bcf764fd3.jpg" alt="user" />
-        <h4 className="profile-name">Paijo Subejo</h4>
-        <p className="profile-score">Skor: 240</p>
-    </div>
-);
+import { findMyScore } from '../../utils';
+
+const ProfileSection = () => {
+    const { authUser, leaderboards } = useSelector((states) => states);
+
+    const myScore = findMyScore(authUser.id, leaderboards);
+
+    return (
+        <div className="section-content profile-section">
+            <img className="profile-photo" src={authUser.avatar} alt="user" />
+            <h4 className="profile-name">{authUser.name}</h4>
+            <p className="profile-score">{`Skor: ${myScore}`}</p>
+        </div>
+    );
+};
 
 export default ProfileSection;

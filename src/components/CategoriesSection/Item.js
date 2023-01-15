@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 
 import { numberFormatted } from '../../utils';
 
-const CategoryItem = ({ filteredCategory, name, amount }) => (
-    <div className={`category-option ${filteredCategory === name ? 'active' : ''}`} key={name}>
+const CategoryItem = ({
+    isActive, name, amount, onClick,
+}) => (
+    <div
+        className={`category-option ${isActive ? 'active' : ''}`}
+        onClick={onClick}
+        onKeyDown={onClick}
+        role="button"
+        tabIndex={0}
+    >
         <p className="category-option__name">{name}</p>
         <small className="category-option__count">
             {`${numberFormatted(amount)} diskusi`}
@@ -13,15 +21,17 @@ const CategoryItem = ({ filteredCategory, name, amount }) => (
 );
 
 CategoryItem.propTypes = {
-    filteredCategory: PropTypes.string,
+    isActive: PropTypes.bool,
     name: PropTypes.string,
     amount: PropTypes.number,
+    onClick: PropTypes.func,
 };
 
 CategoryItem.defaultProps = {
-    filteredCategory: '',
+    isActive: false,
     name: '',
     amount: 0,
+    onClick: () => {},
 };
 
 export default CategoryItem;

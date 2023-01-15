@@ -5,7 +5,9 @@ import {
     AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike,
 } from 'react-icons/ai';
 
-const Button = ({ isActive, amount, type }) => {
+const Button = ({
+    isActive, amount, type, onClick,
+}) => {
     let icon;
     switch (type) {
     case 'like':
@@ -21,7 +23,11 @@ const Button = ({ isActive, amount, type }) => {
         icon = null;
     }
     return (
-        <button type="button" className="thread__action-button">
+        <button
+            type="button"
+            className={`thread__action-button ${isActive ? 'active' : ''}`}
+            onClick={onClick}
+        >
             {icon}
             <span className="thread__action-button__amount">{amount}</span>
         </button>
@@ -32,11 +38,13 @@ Button.propTypes = {
     isActive: PropTypes.bool,
     amount: PropTypes.number,
     type: PropTypes.oneOf(['like', 'dislike', 'comment']).isRequired,
+    onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
     isActive: false,
     amount: 0,
+    onClick: () => {},
 };
 
 export default Button;

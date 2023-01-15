@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const UnprotectedRoute = ({ children }) => {
-    const { authUser } = { authUser: null };
+    const [searchParams] = useSearchParams();
+    const { authUser } = useSelector((states) => states);
 
-    return authUser ? <Navigate to="/" /> : children;
+    const redirectURL = searchParams.get('redirect');
+
+    return authUser ? <Navigate to={redirectURL || '/'} /> : children;
 };
 
 UnprotectedRoute.propTypes = {

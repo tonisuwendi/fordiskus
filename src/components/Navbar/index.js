@@ -1,28 +1,29 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Button from '../Button';
 import SearchBox from '../SearchBox';
+import AuthorizedButton from './AuthorizedButton';
+import UnauthorizedButton from './UnauthorizedButton';
 
-const Navbar = () => (
-    <header className="navbar">
-        <div className="navbar__content">
-            <Link to="/">
-                <h1 className="navbar__brand">
-                    fordiskus
-                </h1>
-            </Link>
-            <SearchBox />
-            <div className="navbar__button">
-                <Link to="/register">
-                    <Button label="Daftar" variant="outline" />
+const Navbar = () => {
+    const { authUser } = useSelector((states) => states);
+
+    return (
+        <header className="navbar">
+            <div className="navbar__content">
+                <Link to="/">
+                    <h1 className="navbar__brand">
+                        fordiskus
+                    </h1>
                 </Link>
-                <Link to="/login">
-                    <Button label="Masuk" />
-                </Link>
+                <SearchBox />
+                <div className="navbar__button">
+                    {authUser ? <AuthorizedButton /> : <UnauthorizedButton />}
+                </div>
             </div>
-        </div>
-    </header>
-);
+        </header>
+    );
+};
 
 export default Navbar;

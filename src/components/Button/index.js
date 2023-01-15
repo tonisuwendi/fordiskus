@@ -15,6 +15,7 @@ const Button = ({
     isLoading,
     style,
     leftIcon,
+    rightIcon,
     onClick,
 }) => (
     <button
@@ -28,6 +29,7 @@ const Button = ({
             <>
                 {leftIcon}
                 {label}
+                {rightIcon}
             </>
         )}
     </button>
@@ -35,7 +37,7 @@ const Button = ({
 
 Button.propTypes = {
     label: PropTypes.string.isRequired,
-    variant: PropTypes.oneOf(['primary', 'secondary', 'danger', 'outline']),
+    variant: PropTypes.oneOf(['primary', 'secondary', 'danger', 'outline', 'outline-danger']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     type: PropTypes.oneOf(['button', 'submit']),
     disabled: PropTypes.bool,
@@ -43,6 +45,7 @@ Button.propTypes = {
     isLoading: PropTypes.bool,
     style: PropTypes.object,
     leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
     onClick: PropTypes.func,
 };
 
@@ -55,6 +58,7 @@ Button.defaultProps = {
     isLoading: false,
     style: {},
     leftIcon: null,
+    rightIcon: null,
     onClick: () => {},
 };
 

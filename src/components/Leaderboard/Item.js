@@ -1,13 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const LeaderboardItem = () => (
+const LeaderboardItem = ({ avatar, name, score }) => (
     <div className="leaderboard-item">
         <div className="leaderboard-user">
-            <img className="leaderboard-photo" src="https://id-static.z-dn.net/files/d39/41834b86159e993dc59c8f2bcf764fd3.jpg" alt="user" />
-            <p className="leaderboard-name">Paijo Subejo</p>
+            <img className="leaderboard-photo" src={avatar} alt="user" />
+            <p className="leaderboard-name">{name}</p>
         </div>
-        <p className="leaderboard-score">320</p>
+        <p className="leaderboard-score">{score}</p>
     </div>
 );
+
+LeaderboardItem.propTypes = {
+    avatar: PropTypes.string,
+    name: PropTypes.string,
+    score: PropTypes.number,
+};
+
+LeaderboardItem.defaultProps = {
+    avatar: '',
+    name: '',
+    score: 0,
+};
 
 export default LeaderboardItem;
