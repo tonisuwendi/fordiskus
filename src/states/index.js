@@ -3,7 +3,7 @@ import { loadingBarReducer } from 'react-redux-loading-bar';
 
 import authUserReducer from './authUser/reducer';
 import filterReducer from './filter/reducer';
-import isPreloadReducer from './isPreload/redurer';
+import isPreloadReducer from './isPreload/reducer';
 import leaderboardsReducer from './leaderboards/reducer';
 import loadingReducer from './loading/reducer';
 import threadDetailReducer from './threadDetail/reducer';
