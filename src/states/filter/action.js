@@ -1,6 +1,6 @@
 const ActionType = {
-    CATEGORY_THREADS: 'CATEGORY_THREADS',
-    SEARCH_THREADS: 'SEARCH_THREADS',
+    CATEGORY_THREADS: 'filter/category',
+    SEARCH_THREADS: 'filter/search',
 };
 
 const filterCategoryActionCreator = (category) => ({

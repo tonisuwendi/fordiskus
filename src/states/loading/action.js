@@ -1,8 +1,8 @@
 const ActionType = {
-    THREADS_LOADING: 'THREADS_LOADING',
-    DETAIL_THREAD_LOADING: 'DETAIL_THREAD_LOADING',
-    LEADERBOARDS_LOADING: 'LEADERBOARDS_LOADING',
-    BUTTON_LOADING: 'BUTTON_LOADING',
+    THREADS_LOADING: 'loading/threads',
+    DETAIL_THREAD_LOADING: 'loading/detailThread',
+    LEADERBOARDS_LOADING: 'loading/leaderboards',
+    BUTTON_LOADING: 'loading/button',
 };
 
 const threadsLoadingActionCreator = (isLoading) => ({

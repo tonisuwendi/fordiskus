@@ -5,8 +5,8 @@ import { putAccessToken } from '../../utils';
 import { buttonLoadingActionCreator } from '../loading/action';
 
 const ActionType = {
-    SET_AUTH_USER: 'SET_AUTH_USER',
-    UNSET_AUTH_USER: 'UNSET_AUTH_USER',
+    SET_AUTH_USER: 'authUser/set',
+    UNSET_AUTH_USER: 'authUser/unset',
 };
 
 const setAuthUserActionCreator = (authUser) => ({

@@ -6,10 +6,10 @@ import { asyncReceiveLeaderboards } from '../leaderboards/action';
 import { buttonLoadingActionCreator, detailThreadLoadingActionCreator } from '../loading/action';
 
 const ActionType = {
-    RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
-    VOTE_THREAD_DETAIL: 'VOTE_THREAD_DETAIL',
-    CREATE_COMMENT: 'CREATE_COMMENT',
-    VOTE_COMMENT: 'VOTE_COMMENT',
+    RECEIVE_THREAD_DETAIL: 'threadDetail/receive',
+    VOTE_THREAD_DETAIL: 'threadDetail/voteThread',
+    CREATE_COMMENT: 'threadDetail/comment',
+    VOTE_COMMENT: 'threadDetail/voteComment',
 };
 
 const receiveThreadDetailActionCreator = (threadDetail) => ({

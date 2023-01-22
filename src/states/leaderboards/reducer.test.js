@@ -3,7 +3,7 @@
  *
  * - leaderboardsReducers function
  *  - should return the initial state when given by unknown action
- *  - should return leaderboards when given by RECEIVE_LEADERBOARS action
+ *  - should return leaderboards when given by RECEIVE_LEADERBOARDS action
 */
 
 import leaderboardsReducer from './reducer';
@@ -17,10 +17,10 @@ describe('leaderboardsReducers function', () => {
         expect(nextState).toEqual(initialState);
     });
 
-    it('should return leaderboards when given by RECEIVE_LEADERBOARS action', () => {
+    it('should return leaderboards when given by RECEIVE_LEADERBOARDS action', () => {
         const initialState = [];
         const action = {
-            type: ActionType.RECEIVE_LEADERBOARS,
+            type: ActionType.RECEIVE_LEADERBOARDS,
             payload: {
                 leaderboards: [
                     {

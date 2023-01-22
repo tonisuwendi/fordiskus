@@ -5,11 +5,11 @@ import fetchApi from '../../utils/fetchApi';
 import { leaderboardsLoadingActionCreator } from '../loading/action';
 
 const ActionType = {
-    RECEIVE_LEADERBOARS: 'RECEIVE_LEADERBOARS',
+    RECEIVE_LEADERBOARDS: 'leaderboards/receive',
 };
 
 const receiveLeaderboardsActionCreator = (leaderboards) => ({
-    type: ActionType.RECEIVE_LEADERBOARS,
+    type: ActionType.RECEIVE_LEADERBOARDS,
     payload: { leaderboards },
 });
 

@@ -4,7 +4,7 @@ import fetchApi from '../../utils/fetchApi';
 import { buttonLoadingActionCreator } from '../loading/action';
 
 const ActionType = {
-    RECEIVE_USERS: 'RECEIVE_USERS',
+    RECEIVE_USERS: 'users/receive',
 };
 
 const receiveUsersActionCreator = (users) => ({

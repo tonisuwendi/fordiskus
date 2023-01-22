@@ -6,8 +6,8 @@ import { buttonLoadingActionCreator } from '../loading/action';
 import { voteThreadDetailActionCreator } from '../threadDetail/action';
 
 const ActionType = {
-    RECEIVE_THREADS: 'RECEIVE_THREADS',
-    VOTE_THREAD: 'VOTE_THREAD',
+    RECEIVE_THREADS: 'threads/receive',
+    VOTE_THREAD: 'threads/vote',
 };
 
 const receiveThreadsActionCreator = (threads) => ({
