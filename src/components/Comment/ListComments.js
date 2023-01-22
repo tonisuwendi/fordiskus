@@ -2,19 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CommentItem from './CommentItem';
+import { ListCommentsContent, ListCommentsStyled } from './styled';
+import { SectionTitle } from '../../styles/globals';
 
 const ListComments = ({ comments }) => (
-    <div className="section-content list-comments">
-        <h3 className="section-title">{`Komentar (${comments.length})`}</h3>
-        <div className="list-comments-content">
+    <ListCommentsStyled>
+        <SectionTitle>{`Komentar (${comments.length})`}</SectionTitle>
+        <ListCommentsContent>
             {comments.map((comment) => (
                 <CommentItem
                     key={comment.id}
                     {...comment}
                 />
             ))}
-        </div>
-    </div>
+        </ListCommentsContent>
+    </ListCommentsStyled>
 );
 
 ListComments.propTypes = {

@@ -1,11 +1,13 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
+import { CategoryOptionSkeleton } from '../CategoriesSection/styled';
+
 const CategoryItem = () => (
-    <div className="category-option skeleton">
+    <CategoryOptionSkeleton>
         <Skeleton width={100} height={20} />
         <Skeleton width={60} />
-    </div>
+    </CategoryOptionSkeleton>
 );
 
 const SkeletonCategories = () => (

@@ -2,7 +2,9 @@ import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { searchThreadsActionCreator } from '../../states/filter/action';
+import { SearchBoxButton, SearchBoxInput, SearchBoxStyled } from './styled';
 
 const SearchBox = () => {
     const dispatch = useDispatch();
@@ -17,24 +19,22 @@ const SearchBox = () => {
     const handleSearch = () => navigate('/');
 
     return (
-        <div className="search-box">
-            <input
+        <SearchBoxStyled>
+            <SearchBoxInput
                 type="text"
                 placeholder="Cari diskusi disini..."
                 autoComplete="off"
-                className="search-box__input"
                 onChange={handleChangeInput}
             />
             {pathname !== '/' && (
-                <button
+                <SearchBoxButton
                     type="button"
-                    className="search-box__button"
                     onClick={handleSearch}
                 >
                     <FiSearch />
-                </button>
+                </SearchBoxButton>
             )}
-        </div>
+        </SearchBoxStyled>
     );
 };
 

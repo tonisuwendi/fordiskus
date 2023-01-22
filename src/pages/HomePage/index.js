@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CategoriesSection from '../components/CategoriesSection';
-import ThreadsList from '../components/Thread/ThreadsList';
-import Leaderboard from '../components/Leaderboard';
-import ProfileSection from '../components/ProfileSection';
-import SearchInfo from '../components/Thread/Condition/SearchInfo';
-import CreateInfo from '../components/Thread/Condition/CreateInfo';
-import EmptySearch from '../components/Thread/Condition/EmptySearch';
-import SkeletonThreads from '../components/Skeleton/Threads';
-import HomeHeader from '../components/Thread/Condition/HomeHeader';
-import useResponsive from '../hooks/useReponsive';
-import { asyncPopulateUsersAndThreads } from '../states/shared/action';
-import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
-import { filterCategoryActionCreator } from '../states/filter/action';
+import CategoriesSection from '../../components/CategoriesSection';
+import ThreadsList from '../../components/Thread/ThreadsList';
+import Leaderboard from '../../components/Leaderboard';
+import ProfileSection from '../../components/ProfileSection';
+import SearchInfo from '../../components/Thread/Condition/SearchInfo';
+import CreateInfo from '../../components/Thread/Condition/CreateInfo';
+import EmptySearch from '../../components/Thread/Condition/EmptySearch';
+import SkeletonThreads from '../../components/Skeleton/Threads';
+import HomeHeader from '../../components/Thread/Condition/HomeHeader';
+import useResponsive from '../../hooks/useReponsive';
+import { asyncPopulateUsersAndThreads } from '../../states/shared/action';
+import { asyncReceiveLeaderboards } from '../../states/leaderboards/action';
+import { filterCategoryActionCreator } from '../../states/filter/action';
+import {
+    HomeContainer, HomeContent, HomeLeft, HomeRight,
+} from './styled';
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -45,20 +48,20 @@ const HomePage = () => {
     else if (searchKeyword) topHomeContent = <EmptySearch searchKeyword={searchKeyword} />;
 
     return (
-        <div className="home-container">
-            <div className="home-left">
+        <HomeContainer>
+            <HomeLeft>
                 <CategoriesSection />
-            </div>
-            <div className="home-content">
+            </HomeLeft>
+            <HomeContent>
                 <HomeHeader />
                 {!isMobile && topHomeContent}
                 {loading.threads ? <SkeletonThreads /> : <ThreadsList threads={threadsList} />}
-            </div>
-            <div className="home-right">
+            </HomeContent>
+            <HomeRight>
                 {authUser && <ProfileSection />}
                 <Leaderboard />
-            </div>
-        </div>
+            </HomeRight>
+        </HomeContainer>
     );
 };
 

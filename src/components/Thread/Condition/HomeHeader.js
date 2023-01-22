@@ -4,6 +4,7 @@ import Button from '../../Button';
 import CategoriesSection from '../../CategoriesSection';
 import Leaderboard from '../../Leaderboard';
 import useResponsive from '../../../hooks/useReponsive';
+import { HomeFilterMobile } from '../styled';
 
 const HomeHeader = () => {
     const [showInfo, setShowInfo] = useState(null);
@@ -16,7 +17,7 @@ const HomeHeader = () => {
     return (
         <>
             {isMobile && (
-                <div className="home-filter-mobile">
+                <HomeFilterMobile>
                     <Button
                         label="Kategori"
                         variant="outline"
@@ -29,7 +30,7 @@ const HomeHeader = () => {
                         size="small"
                         onClick={() => handleShowInfo('leaderboards')}
                     />
-                </div>
+                </HomeFilterMobile>
             )}
             {isMobile && showInfo === 'categories' && <CategoriesSection />}
             {isMobile && showInfo === 'leaderboards' && <Leaderboard />}

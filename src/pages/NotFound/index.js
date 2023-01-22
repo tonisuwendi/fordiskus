@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Button from '../components/Button';
-import notFoundImage from '../images/404.svg';
+import Button from '../../components/Button';
+import notFoundImage from '../../images/404.svg';
+import { NotFoundImage, NotFoundStyled, NotFoundText } from './styled';
 
 const NotFound = () => (
-    <div className="not-found">
-        <img
+    <NotFoundStyled>
+        <NotFoundImage
             src={notFoundImage}
             alt="not found"
-            className="not-found-image"
         />
-        <h3 className="not-found-text">
+        <NotFoundText>
             Upps, sepertinya kamu tersesat
-        </h3>
+        </NotFoundText>
         <Link to="/">
             <Button label="Kembali ke Rumah" />
         </Link>
-    </div>
+    </NotFoundStyled>
 );
 
 export default NotFound;

@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { SearchInfoStyled } from '../styled';
+
 const SearchInfo = ({ searchKeyword }) => (
-    <p className="search-info">
+    <SearchInfoStyled>
         Hasil pencarian:
         {' '}
         <strong>{searchKeyword}</strong>
-    </p>
+    </SearchInfoStyled>
 );
 
 SearchInfo.propTypes = {

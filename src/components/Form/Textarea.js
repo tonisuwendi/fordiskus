@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FormGroup, FormGroupLabel, FormGroupTextarea } from './styled';
+
 const Textarea = ({
     id, name, label, value, placeholder, onChange,
 }) => (
-    <div className="form__group">
-        <label htmlFor={id} className="form__group-label">{label}</label>
-        <textarea
+    <FormGroup>
+        <FormGroupLabel htmlFor={id}>{label}</FormGroupLabel>
+        <FormGroupTextarea
             id={id}
             name={name}
-            className="form__group-input textarea"
             placeholder={placeholder}
-            onChange={onChange}
             value={value}
+            onChange={onChange}
         />
-    </div>
+    </FormGroup>
 );
 
 Textarea.propTypes = {

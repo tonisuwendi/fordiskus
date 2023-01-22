@@ -2,14 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from '../../Button';
+import { CreateInfoContainer, CreateInfoTitle } from '../styled';
 
 const CreateInfo = () => (
-    <div className="want-create-thread section-content">
-        <h2 className="want-create-thread__title">Mau diskusi apaan?</h2>
+    <CreateInfoContainer>
+        <CreateInfoTitle>Mau diskusi apaan?</CreateInfoTitle>
         <Link to="/new">
             <Button label="Buat Diskusi" />
         </Link>
-    </div>
+    </CreateInfoContainer>
 );
 
 export default CreateInfo;

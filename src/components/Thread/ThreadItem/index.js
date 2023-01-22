@@ -6,6 +6,7 @@ import ThreadContent from './Content';
 import ThreadHeader from './Header';
 import ButtonAction from '../../ButtonAction';
 import { asyncVoteThread } from '../../../states/threads/action';
+import { ThreadItemStyled } from '../styled';
 
 const ThreadItem = ({ isDetail, user, thread }) => {
     const dispatch = useDispatch();
@@ -20,8 +21,9 @@ const ThreadItem = ({ isDetail, user, thread }) => {
     };
 
     return (
-        <div className="thread-item section-content">
+        <ThreadItemStyled isDetail={isDetail}>
             <ThreadHeader
+                isDetail={isDetail}
                 avatar={user.avatar}
                 name={user.name}
                 date={thread.createdAt}
@@ -41,7 +43,7 @@ const ThreadItem = ({ isDetail, user, thread }) => {
                 commentLength={isDetail ? thread.comments.length : thread.totalComments}
                 onVote={handleVote}
             />
-        </div>
+        </ThreadItemStyled>
     );
 };
 

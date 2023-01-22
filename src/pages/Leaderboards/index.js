@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { AiFillFire } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
-import LeaderboardItem from '../components/Leaderboard/Item';
-import SkeletonLeaderboards from '../components/Skeleton/Leaderboards';
-import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
+import LeaderboardItem from '../../components/Leaderboard/Item';
+import SkeletonLeaderboards from '../../components/Skeleton/Leaderboards';
+import { asyncReceiveLeaderboards } from '../../states/leaderboards/action';
+import { LeaderboardList, LeaderboardsContainer, LeaderboardTitle } from './styled';
 
 const Leaderboards = () => {
     const dispatch = useDispatch();
@@ -15,12 +16,12 @@ const Leaderboards = () => {
     }, [dispatch]);
 
     return (
-        <div className="leaderboards-container">
-            <h2 className="section-title leaderboard-title">
+        <LeaderboardsContainer>
+            <LeaderboardTitle>
                 <AiFillFire />
                 Top Pengguna
-            </h2>
-            <div className="leaderboard-list section-content">
+            </LeaderboardTitle>
+            <LeaderboardList>
                 {loading.leaderboard ? <SkeletonLeaderboards /> : (
                     leaderboards.map(({ user, score }) => (
                         <LeaderboardItem
@@ -31,8 +32,8 @@ const Leaderboards = () => {
                         />
                     ))
                 )}
-            </div>
-        </div>
+            </LeaderboardList>
+        </LeaderboardsContainer>
     );
 };
 

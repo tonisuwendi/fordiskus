@@ -2,10 +2,13 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from '../components/Button';
-import useInput from '../hooks/useInput';
-import { InputPassword, InputText } from '../components/Form';
-import { asyncRegisterUser } from '../states/users/action';
+import Button from '../../components/Button';
+import useInput from '../../hooks/useInput';
+import { InputPassword, InputText } from '../../components/Form';
+import { asyncRegisterUser } from '../../states/users/action';
+import {
+    AuthContainer, AuthForm, AuthSubtitle, AuthTitle, ParagraphSecondary,
+} from '../../styles/globals';
 
 const RegisterPage = () => {
     const dispatch = useDispatch();
@@ -23,10 +26,10 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="auth-container">
-            <h2 className="auth-title">Daftar akunmu</h2>
-            <p className="auth-subtitle">Buat akun dan mulai diskusi sekarang</p>
-            <form className="auth-form" onSubmit={handleRegister}>
+        <AuthContainer>
+            <AuthTitle>Daftar akunmu</AuthTitle>
+            <AuthSubtitle>Buat akun dan mulai diskusi sekarang</AuthSubtitle>
+            <AuthForm onSubmit={handleRegister}>
                 <InputText
                     id="name"
                     name="name"
@@ -60,15 +63,15 @@ const RegisterPage = () => {
                     isLoading={loading.button}
                     style={{ marginTop: 20, marginBottom: 15 }}
                 />
-                <p className="paragraph-secondary">
+                <ParagraphSecondary>
                     Sudah punya akun?
                     {' '}
                     <Link to="/login" className="hover-underline">
                         Login sekarang
                     </Link>
-                </p>
-            </form>
-        </div>
+                </ParagraphSecondary>
+            </AuthForm>
+        </AuthContainer>
     );
 };
 

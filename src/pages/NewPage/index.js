@@ -2,10 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/Button';
-import useInput from '../hooks/useInput';
-import { InputText, Textarea } from '../components/Form';
-import { asyncCreateThread } from '../states/threads/action';
+import Button from '../../components/Button';
+import useInput from '../../hooks/useInput';
+import { InputText, Textarea } from '../../components/Form';
+import { asyncCreateThread } from '../../states/threads/action';
+import { AuthContainer, AuthForm, AuthTitle } from '../../styles/globals';
 
 const NewPage = () => {
     const dispatch = useDispatch();
@@ -23,9 +24,9 @@ const NewPage = () => {
     };
 
     return (
-        <div className="auth-container">
-            <h2 className="auth-title">Buat diskusi baru</h2>
-            <form className="auth-form" onSubmit={handleSubmit}>
+        <AuthContainer>
+            <AuthTitle>Buat diskusi baru</AuthTitle>
+            <AuthForm onSubmit={handleSubmit}>
                 <InputText
                     id="title"
                     name="title"
@@ -59,8 +60,8 @@ const NewPage = () => {
                     isLoading={loading.button}
                     style={{ marginTop: 20, marginBottom: 15 }}
                 />
-            </form>
-        </div>
+            </AuthForm>
+        </AuthContainer>
     );
 };
 

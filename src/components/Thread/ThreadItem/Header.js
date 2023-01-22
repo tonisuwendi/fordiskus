@@ -2,18 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { dateTimeAgo } from '../../../utils';
+import {
+    ThreadHeaderDate,
+    ThreadHeaderName,
+    ThreadHeaderPhoto,
+    ThreadHeaderStyled,
+} from '../styled';
 
-const ThreadHeader = ({ avatar, name, date }) => (
-    <div className="thread__header">
-        <img className="thread__header-photo" src={avatar} alt="user" />
-        <div className="thread__header__content">
-            <p className="thread__header-name">{name}</p>
-            <small className="thread__header-date">{dateTimeAgo(new Date(date))}</small>
+const ThreadHeader = ({
+    isDetail, avatar, name, date,
+}) => (
+    <ThreadHeaderStyled>
+        <ThreadHeaderPhoto isDetail={isDetail} src={avatar} alt="user" />
+        <div>
+            <ThreadHeaderName isDetail={isDetail}>{name}</ThreadHeaderName>
+            <ThreadHeaderDate>{dateTimeAgo(new Date(date))}</ThreadHeaderDate>
         </div>
-    </div>
+    </ThreadHeaderStyled>
 );
 
 ThreadHeader.propTypes = {
+    isDetail: PropTypes.bool.isRequired,
     avatar: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,

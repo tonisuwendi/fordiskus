@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ThreadItem from './ThreadItem';
+import { ThreadsContainer } from './styled';
 
 const ThreadsList = ({ threads }) => (
-    <div className="threads">
+    <ThreadsContainer>
         {threads.map((thread) => (
             <ThreadItem
                 key={thread.id}
@@ -12,7 +13,7 @@ const ThreadsList = ({ threads }) => (
                 user={thread.user}
             />
         ))}
-    </div>
+    </ThreadsContainer>
 );
 
 ThreadsList.propTypes = {

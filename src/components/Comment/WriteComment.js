@@ -3,14 +3,15 @@ import { useSelector } from 'react-redux';
 
 import FormComment from './FormComment';
 import LogoutContent from './LogoutContent';
+import { WriteCommentStyled } from './styled';
 
 const WriteComment = () => {
     const { authUser } = useSelector((states) => states);
 
     return (
-        <div className="write-comment section-content">
+        <WriteCommentStyled>
             {authUser ? <FormComment /> : <LogoutContent />}
-        </div>
+        </WriteCommentStyled>
     );
 };
 

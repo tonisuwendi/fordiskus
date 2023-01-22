@@ -5,24 +5,25 @@ import { Link } from 'react-router-dom';
 import SearchBox from '../SearchBox';
 import AuthorizedButton from './AuthorizedButton';
 import UnauthorizedButton from './UnauthorizedButton';
+import {
+    NavbarBrand, NavbarButton, NavbarContent, NavbarStyled,
+} from './styled';
 
 const Navbar = () => {
     const { authUser } = useSelector((states) => states);
 
     return (
-        <header className="navbar">
-            <div className="navbar__content">
+        <NavbarStyled>
+            <NavbarContent>
                 <Link to="/">
-                    <h1 className="navbar__brand">
-                        fordiskus
-                    </h1>
+                    <NavbarBrand>fordiskus</NavbarBrand>
                 </Link>
                 <SearchBox />
-                <div className="navbar__button">
+                <NavbarButton>
                     {authUser ? <AuthorizedButton /> : <UnauthorizedButton />}
-                </div>
-            </div>
-        </header>
+                </NavbarButton>
+            </NavbarContent>
+        </NavbarStyled>
     );
 };
 

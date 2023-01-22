@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ButtonAction from '../../ButtonAction';
 import CommentHeader from './Header';
 import { asyncVoteComment } from '../../../states/threadDetail/action';
+import { CommentBody, CommentItemStyled } from '../styled';
 
 const CommentItem = ({
     id, content, createdAt, upVotesBy, downVotesBy, owner,
@@ -24,20 +25,20 @@ const CommentItem = ({
     };
 
     return (
-        <div className="comment-item">
+        <CommentItemStyled>
             <CommentHeader
                 avatar={owner.avatar}
                 name={owner.name}
                 date={createdAt}
             />
-            <p className="comment__body" dangerouslySetInnerHTML={{ __html: content }} />
+            <CommentBody dangerouslySetInnerHTML={{ __html: content }} />
             <ButtonAction
                 upVotesBy={upVotesBy}
                 downVotesBy={downVotesBy}
                 commentLength={0}
                 onVote={handleVote}
             />
-        </div>
+        </CommentItemStyled>
     );
 };
 

@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+    LeaderboardItemStyled,
+    LeaderboardName,
+    LeaderboardPhoto,
+    LeaderboardScore,
+    LeaderboardUser,
+} from './styled';
+
 const LeaderboardItem = ({ avatar, name, score }) => (
-    <div className="leaderboard-item">
-        <div className="leaderboard-user">
-            <img className="leaderboard-photo" src={avatar} alt="user" />
-            <p className="leaderboard-name">{name}</p>
-        </div>
-        <p className="leaderboard-score">{score}</p>
-    </div>
+    <LeaderboardItemStyled>
+        <LeaderboardUser>
+            <LeaderboardPhoto src={avatar} alt="user" />
+            <LeaderboardName>{name}</LeaderboardName>
+        </LeaderboardUser>
+        <LeaderboardScore>{score}</LeaderboardScore>
+    </LeaderboardItemStyled>
 );
 
 LeaderboardItem.propTypes = {

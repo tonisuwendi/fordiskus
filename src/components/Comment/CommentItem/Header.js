@@ -2,15 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { dateTimeAgo } from '../../../utils';
+import {
+    CommentHeaderDate,
+    CommentHeaderName,
+    CommentHeaderPhoto,
+    CommentHeaderStyled,
+    CommentHeaderUser,
+} from '../styled';
 
 const CommentHeader = ({ avatar, name, date }) => (
-    <div className="comment__header">
-        <div className="comment__header-user">
-            <img className="comment__header-photo" src={avatar} alt="user" />
-            <p className="comment__header-name">{name}</p>
-        </div>
-        <small className="comment__header-date">{dateTimeAgo(new Date(date))}</small>
-    </div>
+    <CommentHeaderStyled>
+        <CommentHeaderUser>
+            <CommentHeaderPhoto src={avatar} alt="user" />
+            <CommentHeaderName>{name}</CommentHeaderName>
+        </CommentHeaderUser>
+        <CommentHeaderDate>{dateTimeAgo(new Date(date))}</CommentHeaderDate>
+    </CommentHeaderStyled>
 );
 
 CommentHeader.propTypes = {

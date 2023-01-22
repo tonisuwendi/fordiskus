@@ -2,22 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { numberFormatted } from '../../utils';
+import { CategoryOption, CategoryOptionCount, CategoryOptionName } from './styled';
 
 const CategoryItem = ({
     isActive, name, amount, onClick,
 }) => (
-    <div
-        className={`category-option ${isActive ? 'active' : ''}`}
+    <CategoryOption
+        isActive={isActive}
         onClick={onClick}
         onKeyDown={onClick}
         role="button"
         tabIndex={0}
     >
-        <p className="category-option__name">{name}</p>
-        <small className="category-option__count">
+        <CategoryOptionName>{name}</CategoryOptionName>
+        <CategoryOptionCount>
             {`${numberFormatted(amount)} diskusi`}
-        </small>
-    </div>
+        </CategoryOptionCount>
+    </CategoryOption>
 );
 
 CategoryItem.propTypes = {

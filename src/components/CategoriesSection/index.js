@@ -5,6 +5,8 @@ import CategoryItem from './Item';
 import SkeletonCategories from '../Skeleton/Categories';
 import { createCategoriesList } from '../../utils';
 import { filterCategoryActionCreator } from '../../states/filter/action';
+import { CategoriesSectionStyled } from './styled';
+import { SectionTitle } from '../../styles/globals';
 
 const CategoriesSection = () => {
     const dispatch = useDispatch();
@@ -17,8 +19,8 @@ const CategoriesSection = () => {
     const categoriesList = createCategoriesList(threads);
 
     return (
-        <div className="section-content categories-section">
-            <h3 className="section-title">Kategori Populer</h3>
+        <CategoriesSectionStyled>
+            <SectionTitle>Kategori Populer</SectionTitle>
             {loading.threads ? <SkeletonCategories /> : (
                 categoriesList.map((category) => (
                     <CategoryItem
@@ -30,7 +32,7 @@ const CategoriesSection = () => {
                     />
                 ))
             )}
-        </div>
+        </CategoriesSectionStyled>
     );
 };
 

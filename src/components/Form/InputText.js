@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FormGroup, FormGroupInput, FormGroupLabel } from './styled';
+
 const InputText = ({
     id, name, label, value, placeholder, onChange,
 }) => (
-    <div className="form__group">
-        <label htmlFor={id} className="form__group-label">{label}</label>
-        <input
+    <FormGroup>
+        <FormGroupLabel htmlFor={id}>{label}</FormGroupLabel>
+        <FormGroupInput
             type="text"
             id={id}
             name={name}
-            className="form__group-input"
             placeholder={placeholder}
             value={value}
             onChange={onChange}
         />
-    </div>
+    </FormGroup>
 );
 
 InputText.propTypes = {

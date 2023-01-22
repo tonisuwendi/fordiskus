@@ -1,22 +1,24 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
+import { LeaderboardItemStyled, LeaderboardList, LeaderboardUser } from '../Leaderboard/styled';
+
 const LeaderboardItem = () => (
-    <div className="leaderboard-item">
-        <div className="leaderboard-user">
+    <LeaderboardItemStyled>
+        <LeaderboardUser>
             <Skeleton width={30} height={30} borderRadius={15} />
             <Skeleton width={100} height={18} />
-        </div>
+        </LeaderboardUser>
         <Skeleton width={25} height={20} />
-    </div>
+    </LeaderboardItemStyled>
 );
 
 const SkeletonLeaderboards = () => (
-    <div className="leaderboard-list">
+    <LeaderboardList>
         <LeaderboardItem />
         <LeaderboardItem />
         <LeaderboardItem />
-    </div>
+    </LeaderboardList>
 );
 
 export default SkeletonLeaderboards;

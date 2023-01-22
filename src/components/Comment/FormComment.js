@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button';
 import { Textarea } from '../Form';
 import { asyncCreateComment } from '../../states/threadDetail/action';
+import { SectionTitle } from '../../styles/globals';
 
 const FormComment = () => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const FormComment = () => {
 
     return (
         <>
-            <h2 className="section-title" style={{ marginBottom: 10 }}>Tulis Komentar</h2>
+            <SectionTitle style={{ marginBottom: 10 }}>Tulis Komentar</SectionTitle>
             <form onSubmit={handleComment}>
                 <Textarea
                     name="comment"

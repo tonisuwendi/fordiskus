@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
+import {
+    FormGroup,
+    FormGroupBody,
+    FormGroupInput,
+    FormGroupLabel,
+    FormGroupPasswordIcon,
+} from './styled';
+
 const InputPassword = ({
     id, name, label, value, placeholder, onChange,
 }) => {
@@ -10,28 +18,26 @@ const InputPassword = ({
     const handleToggleType = () => setIsPassword((prevState) => !prevState);
 
     return (
-        <div className="form__group">
-            <label htmlFor={id} className="form__group-label">{label}</label>
-            <div className="form__group-body">
-                <input
+        <FormGroup>
+            <FormGroupLabel htmlFor={id}>{label}</FormGroupLabel>
+            <FormGroupBody>
+                <FormGroupInput
                     type={isPassword ? 'password' : 'text'}
                     name={name}
                     id={id}
-                    className="form__group-input"
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
                 />
-                <button
-                    className="form__group-password__icon"
+                <FormGroupPasswordIcon
                     type="button"
                     tabIndex={-1}
                     onClick={handleToggleType}
                 >
                     {isPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-                </button>
-            </div>
-        </div>
+                </FormGroupPasswordIcon>
+            </FormGroupBody>
+        </FormGroup>
     );
 };
 

@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import Button from '../../Button';
 import { filterCategoryActionCreator } from '../../../states/filter/action';
+import { ThreadContentBody, ThreadContentTitle } from '../styled';
 
 const ThreadContent = ({
     isDetail, id, title, body, category,
@@ -22,13 +23,17 @@ const ThreadContent = ({
     return (
         <>
             {isDetail ? (
-                <p className="thread__content-title">{title}</p>
+                <ThreadContentTitle isDetail>{title}</ThreadContentTitle>
             ) : (
                 <Link to={`/thread/${id}`}>
-                    <p className="thread__content-title">{title}</p>
+                    <ThreadContentTitle withLink>{title}</ThreadContentTitle>
                 </Link>
             )}
-            <p className={`thread__content-body ${isDetail ? '' : 'line-clamp-2'}`} dangerouslySetInnerHTML={{ __html: body }} />
+            <ThreadContentBody
+                isDetail={isDetail}
+                withLineClamp={!isDetail}
+                dangerouslySetInnerHTML={{ __html: body }}
+            />
             <Button
                 label={`#${category.toLowerCase()}`}
                 variant="outline"

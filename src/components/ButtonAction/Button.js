@@ -5,6 +5,8 @@ import {
     AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike,
 } from 'react-icons/ai';
 
+import { AmountInfo, ButtonStyled } from './styled';
+
 const Button = ({
     isActive, amount, type, onClick,
 }) => {
@@ -23,14 +25,14 @@ const Button = ({
         icon = null;
     }
     return (
-        <button
+        <ButtonStyled
+            isActive={isActive}
             type="button"
-            className={`thread__action-button ${isActive ? 'active' : ''}`}
             onClick={onClick}
         >
             {icon}
-            <span className="thread__action-button__amount">{amount}</span>
-        </button>
+            <AmountInfo>{amount}</AmountInfo>
+        </ButtonStyled>
     );
 };
 

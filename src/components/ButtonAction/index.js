@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from './Button';
+import { ThreadAction } from './styled';
 
 const ButtonAction = ({
     showComment, id, upVotesBy, downVotesBy, commentLength, onVote,
@@ -22,7 +23,7 @@ const ButtonAction = ({
     const handleDownVote = () => onVote({ currentVote, action: isDownVoted ? 'neutral' : 'down' });
 
     return (
-        <div className="thread__action">
+        <ThreadAction>
             <Button
                 type="like"
                 amount={upVotesBy.length}
@@ -40,7 +41,7 @@ const ButtonAction = ({
                     <Button type="comment" amount={commentLength} />
                 </Link>
             )}
-        </div>
+        </ThreadAction>
     );
 };
 

@@ -3,6 +3,9 @@ import Skeleton from 'react-loading-skeleton';
 import { useSelector } from 'react-redux';
 
 import { findMyScore } from '../../utils';
+import {
+    ProfileName, ProfilePhoto, ProfileScore, ProfileSectionStyled,
+} from './styled';
 
 const ProfileSection = () => {
     const { authUser, leaderboards, loading } = useSelector((states) => states);
@@ -10,13 +13,13 @@ const ProfileSection = () => {
     const myScore = findMyScore(authUser.id, leaderboards);
 
     return (
-        <div className="section-content profile-section">
-            <img className="profile-photo" src={authUser.avatar} alt="user" />
-            <h4 className="profile-name">{authUser.name}</h4>
+        <ProfileSectionStyled>
+            <ProfilePhoto src={authUser.avatar} alt="user" />
+            <ProfileName>{authUser.name}</ProfileName>
             {loading.leaderboard ? <Skeleton width={50} /> : (
-                <p className="profile-score">{`Skor: ${myScore}`}</p>
+                <ProfileScore>{`Skor: ${myScore}`}</ProfileScore>
             )}
-        </div>
+        </ProfileSectionStyled>
     );
 };
 
