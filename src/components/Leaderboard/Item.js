@@ -13,7 +13,7 @@ const LeaderboardItem = ({ avatar, name, score }) => (
     <LeaderboardItemStyled>
         <LeaderboardUser>
             <LeaderboardPhoto src={avatar} alt="user" />
-            <LeaderboardName>{name}</LeaderboardName>
+            <LeaderboardName data-testid="leaderboard-name">{name}</LeaderboardName>
         </LeaderboardUser>
         <LeaderboardScore>{score}</LeaderboardScore>
     </LeaderboardItemStyled>

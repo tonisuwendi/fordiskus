@@ -1,0 +1,5 @@
+YANG BELUM
+- lebih dari 3 pengujian Thunk Function
+- minimal 1 pengujian End-to-End untuk alur login aplikasi
+- minimal 2 stories komponen
+- deployment ci/cd

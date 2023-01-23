@@ -7,7 +7,7 @@ import { SectionTitle } from '../../styles/globals';
 
 const ListComments = ({ comments }) => (
     <ListCommentsStyled>
-        <SectionTitle>{`Komentar (${comments.length})`}</SectionTitle>
+        <SectionTitle data-testid="comments-title">{`Komentar (${comments.length})`}</SectionTitle>
         <ListCommentsContent>
             {comments.map((comment) => (
                 <CommentItem

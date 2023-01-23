@@ -8,6 +8,7 @@ const CategoryItem = ({
     isActive, name, amount, onClick,
 }) => (
     <CategoryOption
+        data-testid="category-item"
         isActive={isActive}
         onClick={onClick}
         onKeyDown={onClick}

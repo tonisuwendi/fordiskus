@@ -23,19 +23,20 @@ const ThreadContent = ({
     return (
         <>
             {isDetail ? (
-                <ThreadContentTitle isDetail>{title}</ThreadContentTitle>
+                <ThreadContentTitle data-testid="thread-title" isDetail>{title}</ThreadContentTitle>
             ) : (
                 <Link to={`/thread/${id}`}>
-                    <ThreadContentTitle withLink>{title}</ThreadContentTitle>
+                    <ThreadContentTitle data-testid="thread-title" withLink>{title}</ThreadContentTitle>
                 </Link>
             )}
             <ThreadContentBody
+                data-testid="thread-body"
                 isDetail={isDetail}
                 withLineClamp={!isDetail}
                 dangerouslySetInnerHTML={{ __html: body }}
             />
             <Button
-                label={`#${category.toLowerCase()}`}
+                label={`#${category?.toLowerCase()}`}
                 variant="outline"
                 size="small"
                 onClick={handleClickCategory}

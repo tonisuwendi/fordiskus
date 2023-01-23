@@ -15,9 +15,9 @@ const ProfileSection = () => {
     return (
         <ProfileSectionStyled>
             <ProfilePhoto src={authUser.avatar} alt="user" />
-            <ProfileName>{authUser.name}</ProfileName>
+            <ProfileName data-testid="profile-name">{authUser.name}</ProfileName>
             {loading.leaderboard ? <Skeleton width={50} /> : (
-                <ProfileScore>{`Skor: ${myScore}`}</ProfileScore>
+                <ProfileScore data-testid="profile-score">{`Skor: ${myScore}`}</ProfileScore>
             )}
         </ProfileSectionStyled>
     );
