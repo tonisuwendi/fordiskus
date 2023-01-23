@@ -20,7 +20,7 @@ const CategoriesSection = () => {
 
     return (
         <CategoriesSectionStyled>
-            <SectionTitle>Kategori Populer</SectionTitle>
+            <SectionTitle data-test-id="categories-title">Kategori Populer</SectionTitle>
             {loading.threads ? <SkeletonCategories /> : (
                 categoriesList.map((category) => (
                     <CategoryItem

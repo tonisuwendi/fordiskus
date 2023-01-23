@@ -20,7 +20,7 @@ const FormComment = () => {
 
     return (
         <>
-            <SectionTitle style={{ marginBottom: 10 }}>Tulis Komentar</SectionTitle>
+            <SectionTitle style={{ marginBottom: 10 }} data-test-id="form-comment-title">Tulis Komentar</SectionTitle>
             <form onSubmit={handleComment}>
                 <Textarea
                     name="comment"

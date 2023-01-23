@@ -23,14 +23,15 @@ const ThreadContent = ({
     return (
         <>
             {isDetail ? (
-                <ThreadContentTitle data-testid="thread-title" isDetail>{title}</ThreadContentTitle>
+                <ThreadContentTitle data-cy="thread-title" data-testid="thread-title" isDetail>{title}</ThreadContentTitle>
             ) : (
                 <Link to={`/thread/${id}`}>
-                    <ThreadContentTitle data-testid="thread-title" withLink>{title}</ThreadContentTitle>
+                    <ThreadContentTitle data-cy="thread-title" data-testid="thread-title" withLink>{title}</ThreadContentTitle>
                 </Link>
             )}
             <ThreadContentBody
                 data-testid="thread-body"
+                data-cy="thread-body"
                 isDetail={isDetail}
                 withLineClamp={!isDetail}
                 dangerouslySetInnerHTML={{ __html: body }}

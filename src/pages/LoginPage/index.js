@@ -23,7 +23,7 @@ const LoginPage = () => {
 
     return (
         <AuthContainer>
-            <AuthTitle>Selamat datang kembali</AuthTitle>
+            <AuthTitle data-test-id="login-page-title">Selamat datang kembali</AuthTitle>
             <AuthSubtitle>Buat diskusi dan dapatkan jawaban secara cepat</AuthSubtitle>
             <AuthForm onSubmit={handleLogin}>
                 <InputText

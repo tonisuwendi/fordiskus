@@ -6,7 +6,7 @@ import { CreateInfoContainer, CreateInfoTitle } from '../styled';
 
 const CreateInfo = () => (
     <CreateInfoContainer>
-        <CreateInfoTitle>Mau diskusi apaan?</CreateInfoTitle>
+        <CreateInfoTitle data-test-id="create-info-title">Mau diskusi apaan?</CreateInfoTitle>
         <Link to="/new">
             <Button label="Buat Diskusi" />
         </Link>
