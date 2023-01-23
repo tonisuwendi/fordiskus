@@ -20,7 +20,7 @@ import '@testing-library/jest-dom';
 import HomePage from '.';
 
 const mockStore = configureMockStore([thunk]);
-const mockThreadsList = [
+const fakeThreadsList = [
     {
         id: 'thread-1',
         title: 'Apa itu javascript',
@@ -44,7 +44,7 @@ const mockThreadsList = [
         downVotesBy: [],
     },
 ];
-const mockUsersList = [
+const fakeUsersList = [
     {
         id: 'user-1',
         name: 'Toni Suwendi',
@@ -66,9 +66,9 @@ const homePageRender = (storeValue = {}) => {
             category: '',
             searchKeyword: '',
         },
-        threads: mockThreadsList,
-        users: mockUsersList,
-        leaderboards: mockUsersList.map((user, index) => ({ user, score: 2 * (index + 1) })),
+        threads: fakeThreadsList,
+        users: fakeUsersList,
+        leaderboards: fakeUsersList.map((user, index) => ({ user, score: 2 * (index + 1) })),
         ...storeValue,
     });
 
@@ -97,28 +97,28 @@ describe('HomePage component', () => {
     it('should display categories "#react" and "#javascript"', () => {
         homePageRender();
         const category = screen.getAllByTestId('category-item');
-        expect(category[1]).toHaveTextContent(`#${mockThreadsList[0].category}1 diskusi`);
-        expect(category[2]).toHaveTextContent(`#${mockThreadsList[1].category}1 diskusi`);
+        expect(category[1]).toHaveTextContent(`#${fakeThreadsList[0].category}1 diskusi`);
+        expect(category[2]).toHaveTextContent(`#${fakeThreadsList[1].category}1 diskusi`);
     });
 
     it('should display threads with title "Apa itu javascript" and "Apa itu React"', () => {
         homePageRender();
         const thread = screen.getAllByTestId('thread-title');
-        expect(thread[0]).toHaveTextContent(mockThreadsList[0].title);
-        expect(thread[1]).toHaveTextContent(mockThreadsList[1].title);
+        expect(thread[0]).toHaveTextContent(fakeThreadsList[0].title);
+        expect(thread[1]).toHaveTextContent(fakeThreadsList[1].title);
     });
 
     it('should display leaderboards with name "Toni Suwendi" and "Shani Indira Natio"', () => {
         homePageRender();
         const leaderboard = screen.getAllByTestId('leaderboard-name');
-        expect(leaderboard[0]).toHaveTextContent(mockUsersList[0].name);
-        expect(leaderboard[1]).toHaveTextContent(mockUsersList[1].name);
+        expect(leaderboard[0]).toHaveTextContent(fakeUsersList[0].name);
+        expect(leaderboard[1]).toHaveTextContent(fakeUsersList[1].name);
     });
 
     it('should display profile is authUser not null', () => {
-        const mockAuthUser = { name: 'Toni Suwendi' };
-        homePageRender({ authUser: mockAuthUser });
+        const fakeAuthUser = { name: 'Toni Suwendi' };
+        homePageRender({ authUser: fakeAuthUser });
         const name = screen.getByTestId('profile-name');
-        expect(name).toHaveTextContent(mockAuthUser.name);
+        expect(name).toHaveTextContent(fakeAuthUser.name);
     });
 });

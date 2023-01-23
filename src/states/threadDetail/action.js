@@ -88,6 +88,8 @@ const asyncVoteComment = ({
 export {
     ActionType,
     voteThreadDetailActionCreator,
+    receiveThreadDetailActionCreator,
+    createCommentActionCreator,
     asyncReceiveThreadDetail,
     asyncCreateComment,
     asyncVoteComment,

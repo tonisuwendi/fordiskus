@@ -29,5 +29,6 @@ const asyncReceiveLeaderboards = () => async (dispatch) => {
 
 export {
     ActionType,
+    receiveLeaderboardsActionCreator,
     asyncReceiveLeaderboards,
 };

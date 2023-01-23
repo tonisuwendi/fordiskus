@@ -19,7 +19,7 @@ import '@testing-library/jest-dom';
 import DetailPage from '.';
 
 const mockStore = configureMockStore([thunk]);
-const mockDetailThread = {
+const fakeDetailThread = {
     id: 'thread-1',
     title: 'Perbedaan ref dan href',
     body: 'Apa sih bedanya ref sama href?',
@@ -69,7 +69,7 @@ describe('DetailPage component thread is null', () => {
 describe('DetailPage component is not null', () => {
     beforeEach(() => {
         const store = mockStore({
-            threadDetail: mockDetailThread,
+            threadDetail: fakeDetailThread,
             leaderboards: [],
             loading: { detailThread: false },
         });
@@ -85,16 +85,16 @@ describe('DetailPage component is not null', () => {
 
     it('should display the same thread title as the state threadDetail', () => {
         const titleText = screen.getByTestId('thread-title');
-        expect(titleText).toHaveTextContent(mockDetailThread.title);
+        expect(titleText).toHaveTextContent(fakeDetailThread.title);
     });
 
     it('should display the same thread body as the state threadDetail', () => {
         const bodyText = screen.getByTestId('thread-body');
-        expect(bodyText).toHaveTextContent(mockDetailThread.body);
+        expect(bodyText).toHaveTextContent(fakeDetailThread.body);
     });
 
     it('should display comment title "Komentar (X) based on total comments"', () => {
         const commentTitle = screen.getByTestId('comments-title');
-        expect(commentTitle).toHaveTextContent(`Komentar (${mockDetailThread.comments.length})`);
+        expect(commentTitle).toHaveTextContent(`Komentar (${fakeDetailThread.comments.length})`);
     });
 });

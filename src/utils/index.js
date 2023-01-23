@@ -57,3 +57,5 @@ export const filtereThreadsByCategory = (threads, category) => {
     if (!category) return threads;
     return threads.filter((thread) => thread.category === category);
 };
+
+export const fakeErrorResponse = new Error('Ups, something went wrong');
