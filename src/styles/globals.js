@@ -43,3 +43,9 @@ export const ParagraphSecondary = styled.p({
     fontSize: 14,
     color: colors.slate500,
 });
+
+export const Flex = styled.div(({ gap = 8, direction = 'row' }) => ({
+    display: 'flex',
+    flexDirection: direction,
+    gap,
+}));

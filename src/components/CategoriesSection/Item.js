@@ -23,8 +23,11 @@ const CategoryItem = ({
 );
 
 CategoryItem.propTypes = {
+    /** Specify whether the item should be actived, or not */
     isActive: PropTypes.bool,
+    /** The title item */
     name: PropTypes.string,
+    /** The amount of item */
     amount: PropTypes.number,
     onClick: PropTypes.func,
 };
