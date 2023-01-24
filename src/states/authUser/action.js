@@ -23,8 +23,6 @@ const asyncSetAuthUser = ({ email, password }) => async (dispatch) => {
     try {
         const token = await fetchApi.login({ email, password });
         putAccessToken(token);
-        const authUser = await fetchApi.getOwnProfile();
-        dispatch(setAuthUserActionCreator(authUser));
     } catch (error) {
         toast.error(error.message);
     } finally {
