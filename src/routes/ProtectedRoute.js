@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
 
     useEffect(() => {
         if (!authUser) toast.warning('Kamu harus login terlebih dahulu');
-    }, []);
+    }, [authUser]);
 
     return authUser ? children : <Navigate to={redirect} />;
 };
